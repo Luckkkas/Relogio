@@ -1,0 +1,156 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+
+}   
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #001f3f, #0074cc, #00a8e8)
+}
+
+.relogio {
+    width: 450px;
+    height: 450px;
+    position: relative;
+    border-radius: 50%;
+    background: white;
+    border: 10px solid #1565c0;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+
+}
+
+.number {
+    position: absolute;
+    font-family: arial, sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    color: #1565c0;
+    transform: translate(-50%, -50%);
+}
+
+.number-12 {
+    top: 9%;
+    left: 50%;
+}
+
+.number-1 {
+    top: 15%;
+    left: 71%;
+}
+
+
+.number-2 {
+    top: 28%;
+    left: 87%;
+}
+
+.number-3 {
+    top: 50%;
+    left: 92%;
+}
+
+.number-4 {
+    top: 72%;
+    left: 87%;
+}
+
+.number-5 {
+    top: 85%;
+    left: 71%;
+}
+
+.number-6 {
+    top: 91%;
+    left: 50%;
+}
+
+
+.number-7 {
+    top: 85%;
+    left: 29%;
+}
+
+.number-8 {
+    top: 72%;
+    left: 13%;
+}
+
+.number-9 {
+    top: 50%;
+    left: 8%;
+}
+
+.number-10 {
+    top: 28%;
+    left: 13%;
+}
+
+.number-11 {
+    top: 15%;
+    left: 29%;
+}
+
+.hour-hand,
+.minute-hand,
+.second-hand {
+    position: absolute;
+
+    left: 50%;
+    bottom: 50%;
+    transform-origin: bottom center;
+
+    border-radius: 10px;
+
+    z-index: 5;
+}
+
+.hour-hand {
+    width: 10px;
+    height: 110px;
+    background: #1565c0;
+}
+
+.minute-hand {
+    width: 7px;
+    height: 155px;
+    background: #1976d2;
+}
+
+.second-hand {
+    width: 3px;
+    height: 185px;
+    background: #42a5f5;
+}
+
+.center {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: 50%;
+    z-index: 10;
+    
+}
+
+.credit {
+    position: absolute;
+    top: 62%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: Arial, sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #1565c0;
+    text-shadow: 0 1px 3px rgba(21, 101, 192, 0.3);
+    z-index: 4;
+}
+
