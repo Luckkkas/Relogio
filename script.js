@@ -1,21 +1,39 @@
-function relogio() {
-    const agora = new Date();
+const body = document.querySelector('body'),
+hourHand = document.querySelector('.hour'),
+minuteHand = document.querySelector('.minute'),
+secondHand = document.querySelector('.second'),
+modeSwitch = document.querySelector('.mode-switch');
 
-    const horas = agora.getHours();
-    const minutos = agora.getMinutes();
-    const segundos = agora.getSeconds();
+ if(localStorage.getItem('mode') === 'Dark Mode') {
+    body.classList.add('dark');
+    modeSwitch.textContent= 'Light Mode';
+ }
 
-    const ponteiroHora = document.querySelector(".hour-hand");
-    const ponteiroMinuto = document.querySelector(".minute-hand");
-    const ponteiroSecundo = document.querySelector(".second-hand");
+ modeSwitch.addEventListener('click', () => {
+    body.classList.toggle('dark');
 
-    ponteiroHora.style.transform = `translateX(-50%) rotate(${horas % 12 * 30 + minutos * 0.5}deg)`;
-    ponteiroMinuto.style.transform = `translateX(-50%) rotate(${minutos * 6}deg)`;
-    ponteiroSecundo.style.transform = `translateX(-50%) rotate(${segundos * 6}deg)`;
-    
-    
-}
+    const isDarkMode = body.classList.contains('dark');
 
-relogio();
+    modeSwitch.textContent = isDarkMode ? 'Light Mode' : 
+    'Dark Mode';
 
-setInterval(relogio, 1000);
+    localStorage.setItem('mode', isDarkMode ? 'Dark Mode' :
+        'Light Mode');
+ })
+
+ const updateTime = () => {
+    const date = new Date();
+
+    const secToDeg = (date.getSeconds() / 60) * 360;
+    const minToDeg = (date.getMinutes() / 60) * 360;
+    const hrToDeg = ((date.getHours() % 12) / 12) * 360
+    + (date.getMinutes() / 60) * 30;
+
+    secondHand.style.transform = `rotate(${secToDeg}deg)`;
+    minuteHand.style.transform = `rotate(${minToDeg}deg)`;
+    hourHand.style.transform = `rotate(${hrToDeg}deg)`;
+ };
+
+ setInterval(updateTime, 1000);
+
+ updateTime();
