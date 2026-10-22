@@ -1,156 +1,122 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-}   
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins' sans-serif;
+}
+
+:root {
+    --primary-color: #f6f7fb;
+    --white-color: #fff;
+    --black-color: #18191a;
+    --red-color: #e74c3c;
+}
 
 body {
+    display: flex;
     min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-color);
+
+}
+
+body.dark {
+    --primary-color: #242526;
+    --white-color: #18191a;
+    --black-color: #fff;
+    --red-color: #e74c3c;
+}
+
+body.dark .mode-switch {
+    color: #fff;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+}
+
+.container .clock {
+    display: flex;
+    height: 400px;
+    width: 400px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--white-color);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1), 0 25px 45px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.clock label {
+    position: absolute;
+    inset: 20px;
+    text-align: center;
+    transform: rotate(calc(var(--i)  * (360deg / 12)));
+}
+
+.clock label span {
+    display: inline-block;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--black-color);
+    transform: rotate(calc(var(--i) * (-360deg / 12)));
+}
+
+.container .indicator {
+    position: absolute;
+    height: 10px;
+    width: 10px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #001f3f, #0074cc, #00a8e8)
 }
 
-.relogio {
-    width: 450px;
-    height: 450px;
-    position: relative;
+.indicator::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
     border-radius: 50%;
-    background: white;
-    border: 10px solid #1565c0;
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
-
+    z-index: 100;
+    background: var(--black-color);
+    border: 4px solid var(--red-color);
 }
 
-.number {
+.indicator .hand {
     position: absolute;
-    font-family: arial, sans-serif;
-    font-size: 28px;
-    font-weight: bold;
-    color: #1565c0;
-    transform: translate(-50%, -50%);
+    height: 130px;
+    width: 4px;
+    bottom: 0;
+    border-radius: 25px;
+    transform-origin: bottom;
+    background: var(--red-color);
 }
 
-.number-12 {
-    top: 9%;
-    left: 50%;
+.hand.minute {
+    height: 120px;
+    width: 5px;
+    background: var(--black-color)
+}    
+
+.hand.hour {
+    height: 100px;
+    width: 8px;
+    background: var(--black-color);
 }
 
-.number-1 {
-    top: 15%;
-    left: 71%;
+.mode-switch {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 22px;
+    font-weight: 400;
+    display: inline-block;
+    color: var(--black-color);
+    background: var(--white-color);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
 }
-
-
-.number-2 {
-    top: 28%;
-    left: 87%;
-}
-
-.number-3 {
-    top: 50%;
-    left: 92%;
-}
-
-.number-4 {
-    top: 72%;
-    left: 87%;
-}
-
-.number-5 {
-    top: 85%;
-    left: 71%;
-}
-
-.number-6 {
-    top: 91%;
-    left: 50%;
-}
-
-
-.number-7 {
-    top: 85%;
-    left: 29%;
-}
-
-.number-8 {
-    top: 72%;
-    left: 13%;
-}
-
-.number-9 {
-    top: 50%;
-    left: 8%;
-}
-
-.number-10 {
-    top: 28%;
-    left: 13%;
-}
-
-.number-11 {
-    top: 15%;
-    left: 29%;
-}
-
-.hour-hand,
-.minute-hand,
-.second-hand {
-    position: absolute;
-
-    left: 50%;
-    bottom: 50%;
-    transform-origin: bottom center;
-
-    border-radius: 10px;
-
-    z-index: 5;
-}
-
-.hour-hand {
-    width: 10px;
-    height: 110px;
-    background: #1565c0;
-}
-
-.minute-hand {
-    width: 7px;
-    height: 155px;
-    background: #1976d2;
-}
-
-.second-hand {
-    width: 3px;
-    height: 185px;
-    background: #42a5f5;
-}
-
-.center {
-    position: absolute;
-    width: 22px;
-    height: 22px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: 50%;
-    z-index: 10;
-    
-}
-
-.credit {
-    position: absolute;
-    top: 62%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: Arial, sans-serif;
-    font-size: 17px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    color: #1565c0;
-    text-shadow: 0 1px 3px rgba(21, 101, 192, 0.3);
-    z-index: 4;
-}
-
